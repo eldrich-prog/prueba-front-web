@@ -1,5 +1,6 @@
 // src/App.js
 import React, { useState, useEffect } from "react";
+
 import {
   Card,
   CardHeader,
@@ -9,18 +10,16 @@ import {
 } from "@material-tailwind/react";
 
 // Define la URL de la API y la clave
-const API_URL = "http://localhost/dolibarr/api/index.php/products";
+const API_URL = "http://192.168.50.246/dolibarr/api/index.php/products";
 const API_KEY = "b0823c2f251ab8d5c946a35da54c909ab49600c2";
 
 function DatosApi() {
 
   const [data, setData] = useState([]); // Estado para almacenar los datos
   const [loading, setLoading] = useState(true); // Estado de carga
-  const [cart, setCart] = useState([]);
 
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  };
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,13 +54,14 @@ function DatosApi() {
         <p className="text-center text-gray-500">Cargando productos...</p>
       ) : (
         <div className="p-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 grid-flow-row gap-4">
-          {data.map((item, index) => (
-            <div className="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105">
+          {data.map((item) => (
+            <div className="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105" key={item.id}>
               <img
                 src={item.url}
                 alt={item.label}
                 className="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover"
               />
+
               <div className="m-3 flex items-center justify-between">
                 <Typography
                   color="blue-gray"
@@ -84,8 +84,7 @@ function DatosApi() {
                 >
                   {item.description}
                 </Typography>
-                <button 
-                  onClick={() => addToCart(product)}
+                <button
                   className="w-full bg-yellow-400 text-black rounded-lg py-2 mt-4 hover:bg-yellow-700htji">
                   Añadir al carrito
                 </button>

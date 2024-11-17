@@ -19,7 +19,7 @@ const NarrowCarousel = () => {
 
   return (
 
-    <div className="mx-12 bg-blue-500 text-white  overflow-hidden from-blue-50 to-blue-100 border-1 border-blue-500 rounded-lg shadow-lg transition duration-300 ease-in-out">
+    <div className="bg-blue-500 text-white overflow-hidden from-blue-50 to-blue-100 border-1 border-blue-500 rounded-lg shadow-lg transition duration-300">
       <div className="flex justify-center items-center h-10 text-sm sm:text-base md:text-lg transition-transform transform">
         <span key={currentIndex} className="whitespace-nowrap">
           {messages[currentIndex]}
