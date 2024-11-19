@@ -3,8 +3,6 @@ import { Bars3Icon, BellIcon, XMarkIcon, ShoppingCartIcon } from '@heroicons/rea
 import { useNavigate } from 'react-router-dom';
 
 
-
-
 const navigation = [
   { name: 'Categorias', href:  "#", current: true },
   { name: 'Productos', href: "#", current: false },
@@ -16,7 +14,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar() {
+export default function Navbar({cart}) {
+
   const navigate = useNavigate();
 
   function handleNavigateToCart() {
@@ -28,7 +27,7 @@ export default function Navbar() {
   }
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-800 ">
       <div className="mx-auto max-w-9xl px-3 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -44,7 +43,7 @@ export default function Navbar() {
               <img
                 alt="Your Company"
                 src="img/logo.png"
-                className="h-12 w-auto"
+                className="h-12 w-auto rounded-md"
                 onClick={home}
               />
             </div>
@@ -70,7 +69,7 @@ export default function Navbar() {
             <button
               className="hidden sm:inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-1 focus:ring-inset focus:ring-white mx-2"
               onClick={handleNavigateToCart}
-            >
+            >{cart}
             <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />
             </button>
 

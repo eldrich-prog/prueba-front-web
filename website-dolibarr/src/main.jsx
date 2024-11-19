@@ -12,6 +12,7 @@ import Index from "./Hola";
 import BuyCar from "./BuyCar";
 import Navbar from "./Navbar";
 import App from "./App";
+import Products from './Products';
 
 const router = createBrowserRouter([
   {
