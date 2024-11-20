@@ -4,6 +4,8 @@ import Navbar from "./Navbar";
 import NarrowCarousel from "./NarrowCarousel";
 import ImageProducts from "./Products";
 import Footer from "./footer";
+import AlertProduct from "./Alerta";
+
 
 import {
   Card,
@@ -25,12 +27,25 @@ function DatosApi() {
   const [data, setData] = useState([]); // Estado para almacenar los datos
   const [loading, setLoading] = useState(true); // Estado de carga
   const [cart, setProduct] = useState(0);
+  const [alertaVisible, setAlertaVisible] = useState(false);
+  const [producto, setProducto] = useState(null);
+
 
   function addProduct(product) {
-    setProduct([...cart, product]);
+    setProduct([...cart, product+1]);
     console.log(cart);
 
-  }
+  };
+
+  const agregarAlCarrito = (item) => {
+    setProduct(cart+1);
+    setProducto(item);
+    setAlertaVisible(true);
+    setTimeout(() => {
+      setAlertaVisible(false);
+    }, 2500);
+   
+  };
 
   useEffect(() => {
 
@@ -62,10 +77,10 @@ function DatosApi() {
   return (
     <div className="bg-gray-50">
       <Navbar cart={cart}></Navbar>
-        <div className="py-5 px-5 ">
-          <NarrowCarousel />
-        </div>
-        <ImageProducts></ImageProducts>
+      <div className="py-5 px-5 ">
+        <NarrowCarousel />
+      </div>
+      
       <div className="p-6  min-h-screen">
         <h1 className="text-2xl font-bold mx-12">PRODUCTOS</h1>
         {loading ? (
@@ -102,7 +117,7 @@ function DatosApi() {
                     {item.description}
                   </Typography>
                   <button
-                    onClick={() => setProduct(cart + 1)}
+                    onClick={() => agregarAlCarrito(item)}
                     className="w-full bg-yellow-400 text-black rounded-lg py-2 mt-4 hover:bg-yellow-700htji">
                     Añadir al carrito
                   </button>
@@ -113,7 +128,9 @@ function DatosApi() {
         )}
       </div>
       <Footer></Footer>
+      {alertaVisible && <AlertProduct product={producto}/>}
     </div>
+    
   );
 };
 
