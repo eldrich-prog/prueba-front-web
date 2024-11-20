@@ -6,7 +6,6 @@ import ImageProducts from "./Products";
 import Footer from "./footer";
 import AlertProduct from "./Alerta";
 
-
 import {
   Card,
   CardHeader,
@@ -17,38 +16,31 @@ import {
 import { stringify } from "postcss";
 
 // Define la URL de la API y la clave
-const API_URL = "http://192.168.50.246/dolibarr/api/index.php/products";
+const API_URL = "http://10.58.1.65/dolibarr/api/index.php/products";
 const API_KEY = "b0823c2f251ab8d5c946a35da54c909ab49600c2";
 
-
-
 function DatosApi() {
-
   const [data, setData] = useState([]); // Estado para almacenar los datos
   const [loading, setLoading] = useState(true); // Estado de carga
   const [cart, setProduct] = useState(0);
   const [alertaVisible, setAlertaVisible] = useState(false);
   const [producto, setProducto] = useState(null);
 
-
   function addProduct(product) {
-    setProduct([...cart, product+1]);
+    setProduct([...cart, product + 1]);
     console.log(cart);
-
-  };
+  }
 
   const agregarAlCarrito = (item) => {
-    setProduct(cart+1);
+    setProduct(cart + 1);
     setProducto(item);
     setAlertaVisible(true);
     setTimeout(() => {
       setAlertaVisible(false);
     }, 2500);
-   
   };
 
   useEffect(() => {
-
     const fetchData = async () => {
       try {
         const response = await fetch(API_URL, {
@@ -77,18 +69,22 @@ function DatosApi() {
   return (
     <div className="bg-gray-50">
       <Navbar cart={cart}></Navbar>
-      <div className="py-5 px-5 ">
+      <ImageProducts />
+      <div className="px-10 py-2">
         <NarrowCarousel />
+        hola
       </div>
-      
       <div className="p-6  min-h-screen">
         <h1 className="text-2xl font-bold mx-12">PRODUCTOS</h1>
         {loading ? (
           <p className="text-center text-gray-500">Cargando productos...</p>
         ) : (
-          <div className="p-7 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 grid-flow-row gap-4">
+          <div className="p-7 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 grid-flow-row gap-4">
             {data.map((item) => (
-              <div className="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105" key={item.id}>
+              <div
+                className="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105"
+                key={item.id}
+              >
                 <img
                   src={item.url}
                   alt={item.label}
@@ -99,7 +95,8 @@ function DatosApi() {
                     color="blue-gray"
                     className="text-base sm:text-base md:text-lg font-medium text-gray-800"
                   >
-                    {String(item.label).charAt(0).toUpperCase() + String(item.label).slice(1)}
+                    {String(item.label).charAt(0).toUpperCase() +
+                      String(item.label).slice(1)}
                   </Typography>
                   <Typography
                     color="blue-gray"
@@ -114,11 +111,12 @@ function DatosApi() {
                     color="gray"
                     className="font-normal opacity-75"
                   >
-                    {item.description}
+                    {item.note_public}
                   </Typography>
                   <button
                     onClick={() => agregarAlCarrito(item)}
-                    className="w-full bg-yellow-400 text-black rounded-lg py-2 mt-4 hover:bg-yellow-700htji">
+                    className="w-full bg-yellow-400 text-black rounded-lg py-2 mt-4 hover:bg-yellow-700htji"
+                  >
                     Añadir al carrito
                   </button>
                 </div>
@@ -128,10 +126,9 @@ function DatosApi() {
         )}
       </div>
       <Footer></Footer>
-      {alertaVisible && <AlertProduct product={producto}/>}
+      {alertaVisible && <AlertProduct product={producto} />}
     </div>
-    
   );
-};
+}
 
 export default DatosApi;
