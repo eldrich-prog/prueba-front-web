@@ -16,12 +16,14 @@ const BuyCar = () => {
 
   const [cart, setCart] = useState([]);
 
+
+
   const addToCart = (product) => {
     let count_products = cart.filter(item => item.id === product.id).length;
     console.log(count_products);
     if (count_products < product.stock) {
       setCart([...cart, product]);
-    }else{
+    } else {
       alert("Stock fuera de existencia");
     }
   };
@@ -37,16 +39,16 @@ const BuyCar = () => {
         {/* productos */}
         <div className="flex gap-12">
           {/* Lista de productos */}
-          <div className="w-3/4">
-            <h1 className="text-3xl font-bold text-center">Carrito de compras</h1>
-            <h2 className="text-2xl font-semibold mb-4">
+          <div className="w-3/4 bg-white">
+            <h1 className="text-3xl font-bold text-center py-2">Carrito de compras</h1>
+            <h2 className="text-2xl font-semibold mb-4 px-6">
               Tus Productos Favoritos
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-2 bg-gray-200">
               {products.map((product) => (
                 <div
                   key={product.id}
-                  className="p-4 bg-white shadow rounded flex justify-between items-center"
+                  className="p-4 bg-white flex justify-between items-center"
                 >
                   <img src={product.URL} alt={product.name} />
                   <div>
@@ -60,6 +62,16 @@ const BuyCar = () => {
                     className="hover:underline text-blue-500 font-normal text-md">
                     Eliminar
                   </button>
+                  <div class="flex justify-between border-4 rounded-xl bg-yellow-200 text-lg px-auto">
+                    <div ><button className="px-4 hover:bg-yellow-500 rounded-lg ">-</button></div>
+                    <div className="px-7 bg-white rounded-md flex-shrink-0"><label htmlFor="">{cart.filter(item => item.id === product.id).length}</label></div>
+                    <div ><button
+                      onClick={() => addToCart(product)}
+                      className="px-4 hover:bg-yellow-500 rounded-lg">
+                        +
+                      </button>
+                    </div>
+                  </div>
                   <button
                     onClick={() => addToCart(product)}
                     className="bg-yellow-300 text-black px-5 py-1 rounded-2xl hover:bg-yellow-500 border-2"
@@ -73,11 +85,11 @@ const BuyCar = () => {
           {/* Carrito */}
           <div className="w-auto h-40 bg-white rounded-md p-4">
             <h2 className="font-base h-auto text-xs sm:text-sm md:text-md xl:text-xl  text-black m-2">
-              Subtotal ({cart.length} productos)
-              <span className="font-semibold">
-                : ${cart.reduce((total, item) => total + item.price, 0)}
-              </span>
+              Subtotal ({cart.length} productos):
             </h2>
+            <span className="font-semibold h-auto text-xs sm:text-sm md:text-md xl:text-xl  text-black m-2">
+              ${cart.reduce((total, item) => total + item.price, 0)}
+            </span>
             <div className="h-80">
               {cart.length === 0 ? (
                 <p className="font-semibold text-xs sm:text-xs md:text-md xl:text-2xl text-black mx-6">
