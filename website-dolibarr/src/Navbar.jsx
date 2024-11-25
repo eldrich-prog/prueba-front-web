@@ -14,7 +14,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Navbar({cart}) {
+export default function Navbar({cart, data}) {
 
   const navigate = useNavigate();
 

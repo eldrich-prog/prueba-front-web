@@ -2,21 +2,15 @@
 import { button } from "@material-tailwind/react";
 import React, { useState } from "react";
 import Footer from "./footer";
+import {getProductsCar} from "./App"
 
-const products = [
-  { id: 2, name: "Producto B", price: 150, note_public: "Es un producto bonito.", URL: "https://m.media-amazon.com/images/I/61sgXDWDjVL._AC_AA180_.jpg", stock: 5 },
-  { id: 3, name: "Producto C", price: 200, note_public: "Es un producto bonito.", URL: "https://m.media-amazon.com/images/I/61sgXDWDjVL._AC_AA180_.jpg", stock: 10 },
-  { id: 1, name: "Producto A", price: 100, note_public: "Es un producto bonito.", URL: "https://m.media-amazon.com/images/I/61sgXDWDjVL._AC_AA180_.jpg", stock: 10 },
-];
+const products = getProductsCar();
 
 
 const BuyCar = () => {
-
-
+  console.log(products)
 
   const [cart, setCart] = useState([]);
-
-
 
   const addToCart = (product) => {
     let count_products = cart.filter(item => item.id === product.id).length;
@@ -50,9 +44,12 @@ const BuyCar = () => {
                   key={product.id}
                   className="p-4 bg-white flex justify-between items-center"
                 >
-                  <img src={product.URL} alt={product.name} />
+                  <img 
+                  src={product.url} 
+                  alt={product.label}
+                  className="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover" />
                   <div>
-                    <h3 className="font-bold">{product.name}</h3>
+                    <h3 className="font-bold">{product.label}</h3>
                     <p className="text-gray-500">${product.price}</p>
                     <span className="text-gray-500">{product.note_public}</span><br />
                     <span className="text-gray-400">Stock: {product.stock}</span>
@@ -62,7 +59,7 @@ const BuyCar = () => {
                     className="hover:underline text-blue-500 font-normal text-md">
                     Eliminar
                   </button>
-                  <div class="flex justify-between border-4 rounded-xl bg-yellow-200 text-lg px-auto">
+                  <div className="flex justify-between border-4 rounded-xl bg-yellow-200 text-lg px-auto">
                     <div ><button className="px-4 hover:bg-yellow-500 rounded-lg ">-</button></div>
                     <div className="px-7 bg-white rounded-md flex-shrink-0"><label htmlFor="">{cart.filter(item => item.id === product.id).length}</label></div>
                     <div ><button

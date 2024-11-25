@@ -13,31 +13,42 @@ import {
   CardFooter,
   Typography,
 } from "@material-tailwind/react";
-import { stringify } from "postcss";
+
 
 // Define la URL de la API y la clave
-const API_URL = "http://10.58.1.65/dolibarr/api/index.php/products";
+const API_URL = "http://ThinkCentre/dolibarr/api/index.php/products";
 const API_KEY = "b0823c2f251ab8d5c946a35da54c909ab49600c2";
 
+const listProductsCar = [];
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const getProductsCar = () => {
+  return listProductsCar;
+};
+
 function DatosApi() {
+  
   const [data, setData] = useState([]); // Estado para almacenar los datos
   const [loading, setLoading] = useState(true); // Estado de carga
   const [cart, setProduct] = useState(0);
   const [alertaVisible, setAlertaVisible] = useState(false);
-  const [producto, setProducto] = useState(null);
+  const [alerProducto, setAlertProduct] = useState(null);
 
-  function addProduct(product) {
-    setProduct([...cart, product + 1]);
-    console.log(cart);
+  const addProduct = (product) => {
+    listProductsCar.push(product.id);
+
   }
 
   const agregarAlCarrito = (item) => {
     setProduct(cart + 1);
-    setProducto(item);
+    setAlertProduct(item);
     setAlertaVisible(true);
+    addProduct(item);
     setTimeout(() => {
       setAlertaVisible(false);
     }, 2500);
+    
+    
   };
 
   useEffect(() => {
@@ -54,8 +65,11 @@ function DatosApi() {
         if (!response.ok) {
           throw new Error("Error en la solicitud");
         }
-        const result = await response.json();
+        let result = await response.json();
+        result = result.filter(item =>  item.url !== null); 
+        result = result.filter(item => item.status !== "0");
         setData(result);
+        
       } catch (error) {
         console.error("Error al obtener los datos:", error);
       } finally {
@@ -68,7 +82,7 @@ function DatosApi() {
 
   return (
     <div className="bg-gray-50">
-      <Navbar cart={cart}></Navbar>
+      <Navbar cart={cart} data={data}></Navbar>
       <ImageProducts />
       <div className="px-10 py-2">
         <NarrowCarousel />
@@ -126,7 +140,7 @@ function DatosApi() {
         )}
       </div>
       <Footer></Footer>
-      {alertaVisible && <AlertProduct product={producto} />}
+      {alertaVisible && <AlertProduct product={alerProducto} />}
     </div>
   );
 }
