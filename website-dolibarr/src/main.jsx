@@ -11,6 +11,7 @@ import "./index.css";
 import Index from "./Hola";
 import BuyCar from "./BuyCar";
 import Navbar from "./Navbar";
+import CategoryList from "./Categoria";
 import App from "./App";
 import Products from './Products';
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "/carrito",
     element: <div className="bg-gray-400"><Navbar/><BuyCar/></div>,
+  },
+  {
+    path: "/categorias",
+    element: <div className=""><CategoryList/></div>
   },
 ]);
 

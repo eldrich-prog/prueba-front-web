@@ -3,19 +3,13 @@ import { Bars3Icon, BellIcon, XMarkIcon, ShoppingCartIcon } from '@heroicons/rea
 import { useNavigate } from 'react-router-dom';
 
 
-const navigation = [
-  { name: 'Categorias', href:  "#", current: true },
-  { name: 'Productos', href: "#", current: false },
-  { name: 'Programas de lealtad', href: "#", current: false },
-  { name: 'Outlet', href:  "/", current: false },
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Navbar({cart, data}) {
-
+  
   const navigate = useNavigate();
 
   function handleNavigateToCart() {
@@ -26,8 +20,20 @@ export default function Navbar({cart, data}) {
     navigate("/")
   }
 
+  const categorias = () => {
+    navigate("/categorias");
+  }
+
+  const navigation = [
+    { name: 'Categorias', href: categorias, current: true },
+    { name: 'Productos', href: home, current: false },
+    { name: 'Programas de lealtad', href: "#", current: false },
+    { name: 'Outlet', href:  "/", current: false },
+  ]
+  
+
   return (
-    <Disclosure as="nav" className="bg-gray-800 ">
+    <Disclosure as="nav" className="bg-gray-800 fixed top-0 left-0 z-50 w-full">
       <div className="mx-auto max-w-9xl px-3 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -52,7 +58,7 @@ export default function Navbar({cart, data}) {
                 {navigation.map((item) => (
                   <button
                     key={item.name}
-                    onClick={item.href}
+                    onClick={() => item.href()}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
                       item.current ? 'bg-gray-900 text-white' : 'text-gray-200 hover:bg-gray-900 hover:text-white',

@@ -34,8 +34,8 @@ const BuyCar = () => {
   console.log(filtrados)
 
   return (
-    <div>
-      <div className="min-h-screen bg-gray-200 p-4">
+    <div className="pt-20 bg-gray-200">
+      <div className="min-h-screen pt-4">
         {/* productos */}
         <div className="flex gap-12">
           {/* Lista de productos */}
@@ -105,7 +105,7 @@ const BuyCar = () => {
             </div>
           </div>
           {/* Carrito */}
-          <div className="w-auto h-40 bg-white rounded-md p-4">
+          <div className="min-h-40 bg-white rounded-md p-4 ">
             <h2 className="font-base h-auto text-xs sm:text-sm md:text-md xl:text-xl  text-black m-2">
               Subtotal ({cart.length} productos):
             </h2>
@@ -114,7 +114,7 @@ const BuyCar = () => {
             </span>
             <div className="h-80">
               {cart.length === 0 ? (
-                <p className="font-semibold text-xs sm:text-xs md:text-md xl:text-2xl text-black mx-6">
+                <p className="font-semibold text-xs sm:text-xs md:text-md xl:text-2xl text-black m-6">
                   El carrito está vacío
                 </p>
               ) : (

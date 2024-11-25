@@ -27,7 +27,7 @@ export const getProductsCar = () => {
 };
 
 function DatosApi() {
-  
+
   const [data, setData] = useState([]); // Estado para almacenar los datos
   const [loading, setLoading] = useState(true); // Estado de carga
   const [cart, setProduct] = useState(0);
@@ -46,8 +46,8 @@ function DatosApi() {
     setTimeout(() => {
       setAlertaVisible(false);
     }, 2500);
-    
-    
+
+
   };
 
   useEffect(() => {
@@ -65,10 +65,10 @@ function DatosApi() {
           throw new Error("Error en la solicitud");
         }
         let result = await response.json();
-        result = result.filter(item =>  item.url !== null); 
+        result = result.filter(item => item.url !== null);
         result = result.filter(item => item.status !== "0");
         setData(result);
-        
+
       } catch (error) {
         console.error("Error al obtener los datos:", error);
       } finally {
@@ -82,7 +82,10 @@ function DatosApi() {
   return (
     <div className="bg-gray-50">
       <Navbar cart={cart} data={data}></Navbar>
-      <ImageProducts />
+      <div className="pt-16">
+        <ImageProducts />
+      </div>
+
       <div className="px-10 py-2">
         <NarrowCarousel />
       </div>
@@ -126,7 +129,7 @@ function DatosApi() {
                     color="gray"
                     className="font-normal opacity-75"
                   >
-                    {String(item.note_public).charAt(0).toUpperCase() + String(item.note_public).slice(1,35)}...
+                    {String(item.note_public).charAt(0).toUpperCase() + String(item.note_public).slice(1, 35)}...
                   </Typography>
                   <button
                     onClick={() => agregarAlCarrito(item)}
