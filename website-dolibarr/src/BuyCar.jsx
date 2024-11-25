@@ -62,7 +62,7 @@ const BuyCar = () => {
                     <p className="text-gray-500">
                       ${parseFloat(product.price).toFixed(2)}
                     </p>
-                    <span className="text-gray-500">{product.note_public}</span>
+                    <span className="text-gray-500">  {String(product.note_public).charAt(0).toUpperCase() + String(product.note_public).slice(1,35)}...</span>
                     <br />
                     <span className="text-gray-400">
                       Stock: {product.stock_reel}

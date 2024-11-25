@@ -85,7 +85,6 @@ function DatosApi() {
       <ImageProducts />
       <div className="px-10 py-2">
         <NarrowCarousel />
-        hola
       </div>
       <div className="p-6  min-h-screen">
         <h1 className="text-2xl font-bold mx-12">PRODUCTOS</h1>
@@ -103,7 +102,7 @@ function DatosApi() {
                   alt={item.label}
                   className="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover"
                 />
-                <div className="m-3 flex items-center justify-between">
+                <div className="m-3  ">
                   <Typography
                     color="blue-gray"
                     className="text-base sm:text-base md:text-lg font-medium text-gray-800"
@@ -111,20 +110,23 @@ function DatosApi() {
                     {String(item.label).charAt(0).toUpperCase() +
                       String(item.label).slice(1)}
                   </Typography>
-                  <Typography
-                    color="blue-gray"
-                    className="text-base sm:text-base md:text-lg font-medium text-gray-700"
-                  >
-                    ${parseInt(item.price, 10).toFixed(2)}
-                  </Typography>
+                  <div className="flex justify-end">
+                    <Typography
+                      color="red"
+                      className="text-base sm:text-base md:text-lg font-medium text-red-700"
+                    >
+                      ${parseInt(item.price, 10).toFixed(2)}
+                    </Typography>
+                  </div>
                 </div>
                 <div className="m-4">
                   <Typography
+                    maxL
                     variant="small"
                     color="gray"
                     className="font-normal opacity-75"
                   >
-                    {item.note_public}
+                    {String(item.note_public).charAt(0).toUpperCase() + String(item.note_public).slice(1,35)}...
                   </Typography>
                   <button
                     onClick={() => agregarAlCarrito(item)}
