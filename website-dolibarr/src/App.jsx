@@ -35,8 +35,7 @@ function DatosApi() {
   const [alerProducto, setAlertProduct] = useState(null);
 
   const addProduct = (product) => {
-    listProductsCar.push(product.id);
-
+    listProductsCar.push(product);
   }
 
   const agregarAlCarrito = (item) => {
