@@ -1,15 +1,14 @@
-// App.jsx
-import { button } from "@material-tailwind/react";
-import React, { useState } from "react";
+
+import { useState } from "react";
 import Footer from "./footer";
 import { getProductsCar } from "./App";
 
-const products = getProductsCar();
 
 const BuyCar = () => {
-  console.log(products);
+  console.log(getProductsCar);
 
-  const [cart, setCart] = useState(products);
+  const [cart, setCart] = useState(getProductsCar);
+
   const addToCart = (product) => {
     let count_products = cart.filter((item) => item.id === product.id).length;
     console.log(count_products);
@@ -19,6 +18,7 @@ const BuyCar = () => {
       alert("Stock fuera de existencia");
     }
   };
+
   const delete_product = (id) => {
     console.log("eliminado");
     let p = setCart((prevItems) => prevItems.filter((cart) => cart.id !== id));
@@ -31,11 +31,12 @@ const BuyCar = () => {
       return acumulador;
     }, {})
   );
+
   console.log(filtrados)
 
   return (
     <div className="pt-20 bg-gray-200">
-      <div className="min-h-screen pt-4">
+      <div className="min-h-screen pt-4 ml-4">
         {/* productos */}
         <div className="flex gap-12">
           {/* Lista de productos */}
@@ -43,14 +44,14 @@ const BuyCar = () => {
             <h1 className="text-3xl font-bold text-center py-2">
               Carrito de compras
             </h1>
-            <h2 className="text-2xl font-semibold mb-4 px-6">
+            <h2 className="text-2xl font-semibold mx-4 px-6">
               Tus Productos Favoritos
             </h2>
-            <div className="space-y-2 bg-gray-200">
+            <div className="space-y-2 bg-gray-200 ">
               {filtrados.map((product) => (
                 <div
                   key={product.id}
-                  className="p-4 bg-white flex justify-between items-center"
+                  className="px-5 py-1 bg-white flex justify-between items-center"
                 >
                   <img
                     src={product.url}

@@ -12,7 +12,7 @@ function AlertProduct({ product }) {
                     <p>Precio: ${parseInt(product.price, 10).toFixed(2)}</p>
                 </div>
             </div>
-            <div class="fixed top-14 transform -translate-x-1/4 bottom-1 right-28 w-0 h-0 border-l-8 border-r-8 border-b-8   border-transparent border-b-green-500"></div>
+            <div className="fixed top-14 transform -translate-x-1/4 bottom-1 right-28 w-0 h-0 border-l-8 border-r-8 border-b-8   border-transparent border-b-green-500"></div>
         </div>
     );
 };

@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useState, useEffect } from "react";
+import {useEffect, useState} from 'react';
 import Navbar from "./Navbar";
 import NarrowCarousel from "./NarrowCarousel";
 import ImageProducts from "./Products";
@@ -7,12 +7,9 @@ import Footer from "./footer";
 import AlertProduct from "./Alerta";
 
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
   Typography,
 } from "@material-tailwind/react";
+
 
 
 // Define la URL de la API y la clave
@@ -67,6 +64,7 @@ function DatosApi() {
         let result = await response.json();
         result = result.filter(item => item.url !== null);
         result = result.filter(item => item.status !== "0");
+        console.log(result);
         setData(result);
 
       } catch (error) {

@@ -7,7 +7,7 @@ import BuyCar from "./BuyCar";
 import InfoCard from "./InfoCar";
 import ImageCarousel from "./Carrucel";
 import ImageProducts  from "./Products";
-import Carrito from "./Carrito";
+
 
 
 export default function Index() {
