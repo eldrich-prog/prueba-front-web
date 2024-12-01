@@ -13,7 +13,7 @@ const NarrowCarousel = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % messages.length);
-    }, 5000); // Cambia el mensaje cada 3 segundos
+    }, 3000); // Cambia el mensaje cada 3 segundos
     return () => clearInterval(interval);
   }, [messages.length]);
 
