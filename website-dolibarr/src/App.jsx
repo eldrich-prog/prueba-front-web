@@ -95,7 +95,7 @@ function DatosApi() {
           <div className="p-7 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 grid-flow-row gap-4">
             {data.map((item) => (
               <div
-                className="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105"
+                className="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:border-blue-200 border-2"
                 key={item.id}
               >
                 <img
