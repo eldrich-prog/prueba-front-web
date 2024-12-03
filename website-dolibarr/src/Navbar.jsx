@@ -61,7 +61,7 @@ export default function Navbar({cart, data}) {
                     onClick={() => item.href()}
                     aria-current={item.current ? 'page' : undefined}
                     className={classNames(
-                      item.current ? 'bg-gray-900 text-white' : 'text-gray-200 hover:bg-gray-900 hover:text-white',
+                      item.current ? 'bg-gray-900 text-white' : 'text-gray-200 hover:bg-gray-900   hover:text-white',
                       'rounded-md px-5 py-3 text-sm font-medium',
                     )}
                   >
@@ -73,7 +73,7 @@ export default function Navbar({cart, data}) {
           </div>
           <div className="inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <button
-              className="hidden sm:inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-1 focus:ring-inset focus:ring-white mx-2"
+              className="hidden sm:inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-1 focus:ring-inset focus:border-white  mx-2"
               onClick={handleNavigateToCart}
             >{cart}
             <ShoppingCartIcon className="h-6 w-6" aria-hidden="true" />

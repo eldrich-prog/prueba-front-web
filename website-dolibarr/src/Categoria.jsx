@@ -156,7 +156,7 @@ const CategoryList = () => {
             {categories.map((category) => (
               <div
                 key={category.id}
-                className="flex justify-center rounded-md "
+                className="flex justify-center rounded-md hover:border-black border-2"
               >
                 <button className=" bg-gray-200 shadow-lg min-w-full py-4 rounded-md">
                   <h1 className="font-semibold">{category.name}</h1>
