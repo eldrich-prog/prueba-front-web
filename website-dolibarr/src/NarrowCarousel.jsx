@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const NarrowCarousel = () => {
   const messages = [
-    "¡Envío gratis en todas las compras superiores a $50!",
+    "BUEEEN FIN, OFERTAS",
     "Descuento del 20% en productos seleccionados hasta el fin de semana.",
     "¡Ofertas exclusivas para miembros hoy!",
   ];

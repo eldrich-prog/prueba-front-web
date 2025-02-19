@@ -27,16 +27,26 @@ const categories = [
     image: "https://via.placeholder.com/150x150?text=Deportes",
   },
   {
-    id: 5,
+    id: 2,
     name: "Arte y Diseño",
     image: "https://via.placeholder.com/150x150?text=Juguetes",
+  },
+  {
+    id: 6,
+    name: "Libros",
+    image: "https://via.placeholder.com/150x150?text=Libros",
+  },
+  {
+    id: 7,
+    name: "Temporada",
+    image: "https://via.placeholder.com/150x150?text=Libros",
   },
 ];
 
 const API_URL = import.meta.env.VITE_API_URL;
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-function QueryCategoryApi({ id_category }) {
+function QueryCategoryApi({ id_category, name }) {
   const [products, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -46,6 +56,10 @@ function QueryCategoryApi({ id_category }) {
         const response = await axios.get(API_URL, {
           headers: {
             DOLAPIKEY: API_KEY,
+          },
+          params: {
+            properties: "url,price,stock_reel,label,note_public",
+            category: parseInt(id_category),
           },
         });
         let result = response.data;
@@ -70,7 +84,7 @@ function QueryCategoryApi({ id_category }) {
     <div>
       <div className="min-h-screen">
         <div className="my-6">
-          <h1 className="text-2xl font-semibold text-center">PRODUCTOS</h1>
+          <h1 className="text-2xl font-semibold text-center">{name}</h1>
         </div>
         {loading ? (
           <span className="text-center text-gray-500">
@@ -100,9 +114,7 @@ function QueryCategoryApi({ id_category }) {
                   </Typography>
                   <div className="flex justify-between">
                     <div className="text-left">
-                      <Typography
-                        className="font-normal opacity-55"
-                      >
+                      <Typography className="font-normal opacity-55">
                         Stock: {parseInt(product.stock_reel)}
                       </Typography>
                     </div>
@@ -144,6 +156,15 @@ function QueryCategoryApi({ id_category }) {
 }
 
 const CategoryList = () => {
+  const [Category, setUpdateCategory] = useState(categories[0]);
+  const [key, setKey] = useState(0);
+
+  const manejarClick = (category) => {
+    setUpdateCategory(category); // Cambiar el estado para mostrar el componente de la categoría seleccionada
+    setKey(key + 1); // Cambiar la clave para forzar la actualización del componente
+
+  };
+
   return (
     <div>
       <Navbar></Navbar>
@@ -158,7 +179,10 @@ const CategoryList = () => {
                 key={category.id}
                 className="flex justify-center rounded-md "
               >
-                <button className=" bg-gray-200 shadow-lg min-w-full py-4 rounded-md">
+                <button
+                  className="bg-gray-200 shadow-lg min-w-full py-4 rounded-md"
+                  onClick={() => manejarClick(category)}
+                >
                   <h1 className="font-semibold">{category.name}</h1>
                 </button>
               </div>
@@ -166,7 +190,7 @@ const CategoryList = () => {
           </div>
         </div>
         <div className="container my-10 mx-2 pt-4 w-3/4 border-2">
-          <QueryCategoryApi id_category={1}></QueryCategoryApi>
+          {Category && <QueryCategoryApi id_category={Category.id} name={Category.name} key={key}/>}
         </div>
       </div>
       <Footer></Footer>

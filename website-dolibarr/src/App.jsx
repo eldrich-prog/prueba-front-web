@@ -92,7 +92,7 @@ function DatosApi() {
         {loading ? (
           <p className="text-center text-gray-500">Cargando productos...</p>
         ) : (
-          <div className="p-7 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 grid-flow-row gap-4">
+          <div className="p-7 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6  grid-flow-row gap-4">
             {data.map((item) => (
               <div
                 className="max-w-xs bg-white rounded-lg shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:border-blue-200 border-2"
